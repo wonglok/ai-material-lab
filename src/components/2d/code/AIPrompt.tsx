@@ -19,6 +19,22 @@ export function AIPrompt() {
     }
   }, []);
 
+  useEffect(() => {
+    return () => {
+      const headers: HeadersInit = {
+        "Content-Type": "application/json",
+      };
+      headers["Authorization"] = `Bearer N/A`;
+
+      fetch(`http://localhost:1234/api/v1/models/unload`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+          instance_id: modelId,
+        }),
+      }).catch((r) => {});
+    };
+  }, []);
   //
 
   return (
