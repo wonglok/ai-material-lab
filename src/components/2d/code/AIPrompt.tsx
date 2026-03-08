@@ -50,11 +50,11 @@ export function AIPrompt() {
               ev.disabled = true;
               ev.target.innerText = "Processing Prompt...";
               //
-              function removeThinkingTag(responseText: string) {
+              function removeThinkingTag(text: string) {
                 // The regex pattern matches the <think> tag, any content (.*?),
                 // and the </think> tag across multiple lines (s flag).
                 const regex = /<think>.*?<\/think>/gs;
-                return responseText.replace(regex, "").trim();
+                return text.replace(regex, "").trim();
               }
 
               const client = new OpenAI({
@@ -77,14 +77,14 @@ export function AIPrompt() {
               for await (let evt of resp) {
                 tx += evt.choices[0].delta.content;
                 useAICode.setState({
-                  draft: `${removeThinkingTag(tx)}`,
+                  draft: `${removeThinkingTag(`${tx}`)}`,
                   draftBottom: Math.random(),
                 });
                 ev.target.innerText = "Generating...";
               }
               useAICode.setState({
-                draft: `${removeThinkingTag(tx)}`,
-                code: `${removeThinkingTag(tx)}`,
+                draft: `${removeThinkingTag(`${tx}`)}`,
+                code: `${removeThinkingTag(`${tx}`)}`,
               });
 
               ev.target.innerText = "Submit Prompt";
