@@ -34,7 +34,7 @@ export function AIPrompt() {
         }),
       }).catch((r) => {});
     };
-  }, []);
+  }, [modelId]);
   //
 
   return (
