@@ -1557,10 +1557,10 @@ Check below for more details about `NodeMaterial` inputs.
 
 
 # Gudieline
-you must use add() instead of +
-you must use sub() instead of -
-you must use mul() instead of *
-you must use div() instead of /
+you must always use add() instead of + operator
+you must always use sub() instead of - operator
+you must always use mul() instead of * operator
+you must always use div() instead of / operator
 
 # Output
 remove all markdown format

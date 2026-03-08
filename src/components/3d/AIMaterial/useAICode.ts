@@ -4,24 +4,36 @@ export const useAICode = create<any>((set, get) => {
   return {
     //
     prompt: `
-const material = new THREE.MeshPhysicalNodeMaterial({});
+const material = new THREE.MeshPhysicalNodeMaterial({})
 
-// i want to make a wobble blob with perlin noise.
-
-return material;
-    `.trim(),
-    isRunning: false,
-    draft: `
-    `.trim(),
-    code: `const material = new THREE.MeshPhysicalNodeMaterial({})
-
-material.colorNode = uniform( new Color(  'rgba(236, 90, 90, 1)' ) );
+material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) );
 
 material.transmissionNode = float(1.0);
 material.thicknessNode = float(1.5); 
 
 material.roughnessNode = float(0.0);
 material.metalnessNode = float(0.0);
+
+// i want to have bouncing wobble blob in rainbow color
+
+return material;
+    `.trim(),
+    isRunning: false,
+    draft: `
+    `.trim(),
+    code: `
+
+const material = new THREE.MeshPhysicalNodeMaterial({})
+
+material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) );
+
+material.transmissionNode = float(1.0);
+material.thicknessNode = float(1.5); 
+
+material.roughnessNode = float(0.0);
+material.metalnessNode = float(0.0);
+
+// i want to have bouncing wobble blob in rainbow color
 
 return material;
 `.trim(),

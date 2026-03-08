@@ -33,6 +33,9 @@ export function AIDraft() {
           onMount={(editor) => {
             setEditor(editor);
             editor.updateOptions({ readOnly: true });
+            editor.updateOptions({
+              wordWrap: "on",
+            });
           }}
           theme="vs-dark"
           value={draft}

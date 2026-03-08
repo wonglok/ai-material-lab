@@ -7,7 +7,9 @@ import TSLSystem from "../../3d/prompts/TSLSystem.txt?raw";
 
 export function AIPrompt() {
   const prompt = useAICode((r) => r.prompt);
+  const isAIRunning = useAICode((r) => r.isAIRunning);
   const [editor, setEditor] = useState<any>(null);
+
   useEffect(() => {
     let val = localStorage.getItem("prompt");
     if (val && typeof val === "string") {
@@ -46,9 +48,10 @@ export function AIPrompt() {
         {editor && (
           <button
             className="p-3 bg-[#71d854] m-3"
+            disabled={isAIRunning}
             onClick={async (ev: any) => {
-              ev.disabled = true;
-              ev.target.innerText = "Processing Prompt...";
+              const modelId = `qwen3.5-9b`;
+              useAICode.setState({ isAIRunning: true });
               //
               function removeThinkingTag(text: string) {
                 // The regex pattern matches the <think> tag, any content (.*?),
@@ -56,6 +59,28 @@ export function AIPrompt() {
                 const regex = /<think>.*?<\/think>/gs;
                 return text.replace(regex, "").trim();
               }
+
+              const headers: HeadersInit = {
+                "Content-Type": "application/json",
+              };
+              headers["Authorization"] = `Bearer N/A`;
+
+              await fetch(`http://localhost:1234/api/v1/models/unload`, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({
+                  instance_id: modelId,
+                }),
+              }).catch((r) => {});
+
+              await fetch(`http://localhost:1234/api/v1/models/load`, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({
+                  model: modelId,
+                  context_length: 128000,
+                }),
+              });
 
               const client = new OpenAI({
                 apiKey: "n/a", // This is the default and can be omitted
@@ -69,9 +94,9 @@ export function AIPrompt() {
                   { role: "system", content: `${TSLSystem}` },
                   { role: "user", content: prompt },
                 ],
-                model: `qwen3.5-4b`,
+                model: modelId,
                 stream: true,
-                temperature: 0.0,
+                temperature: 1,
               });
 
               let tx = "";
@@ -81,18 +106,15 @@ export function AIPrompt() {
                   draft: `${removeThinkingTag(`${tx}`)}`,
                   draftBottom: Math.random(),
                 });
-                ev.target.innerText = "Generating...";
               }
               useAICode.setState({
                 draft: `${removeThinkingTag(`${tx}`)}`,
                 code: `${removeThinkingTag(`${tx}`)}`,
+                isAIRunning: false,
               });
-
-              ev.target.innerText = "Submit Prompt";
-              ev.disabled = false;
             }}
           >
-            Submit Prompt
+            {isAIRunning ? `Generating...` : `Submit Prompt`}
           </button>
         )}
       </div>
