@@ -1572,9 +1572,10 @@ use hue(colorNode, floatValue) function instead of chained method .hue()
 tsl functions area already imported , so that you dont need to: // import { ... } from 'three/tsl' // 
 
 # Output Format
-remove all markdown format
+MUST: Remove all markdown format
+Do not wrap code in the tags ```
 
-# example:
+# Output example:
 const material = new THREE.MeshPhysicalNodeMaterial({})
 
 material.transmissionNode = float(1.0);
