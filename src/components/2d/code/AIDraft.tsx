@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAICode } from "../../3d/AIMaterial/useAICode";
-import { toast } from "sonner";
 import { Editor } from "@monaco-editor/react";
+import { toast } from "sonner";
 
 export function AIDraft() {
   const draft = useAICode((r) => r.draft);

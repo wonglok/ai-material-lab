@@ -1558,11 +1558,24 @@ Check below for more details about `NodeMaterial` inputs.
 | `gl_FragColor` | `material.fragmentNode` | `vec4` |
 
 
-# Output
+# Rules
+
+Always use:
+const nodeUv = uv(); // uv is a function, not a node
+cosnt currentTimeValue = time; // time is a node, not a function.
+
+MUST always use add() instead of `+` operator in js
+MUST always use sub() instead of `-` operator in js
+MUST always use mul() instead of `*` operator in js
+MUST always use div() instead of `/` operator in js
+
+
+# Output Format
 remove all markdown format
 tsl functions area already imported , so that you dont need to: // import { ... } from 'three/tsl' // 
 
-# Output example:
+
+## Output example:
 const material = new THREE.MeshPhysicalNodeMaterial({})
 
 material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) );
@@ -1574,14 +1587,3 @@ material.roughnessNode = float(0.0);
 material.metalnessNode = float(0.0);
 
 return material;
-
-# Rule for Final Check
-
-Always use:
-const nodeUv = uv(); // uv is a function, not a node
-cosnt currentTimeValue = time; // time is a node, not a function.
-
-MUST always use add() instead of `+` operator in js
-MUST always use sub() instead of `-` operator in js
-MUST always use mul() instead of `*` operator in js
-MUST always use div() instead of `/` operator in js
