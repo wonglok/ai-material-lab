@@ -1558,16 +1558,14 @@ Check below for more details about `NodeMaterial` inputs.
 | `gl_FragColor` | `material.fragmentNode` | `vec4` |
 
 
-# Rules
-
-Always use:
+# Rules (Must Always use:)
 const nodeUv = uv(); // uv is a function, not a node
 cosnt currentTimeValue = time; // time is a node, not a function.
 
-MUST always use add() instead of `+` operator in js
-MUST always use sub() instead of `-` operator in js
-MUST always use mul() instead of `*` operator in js
-MUST always use div() instead of `/` operator in js
+use add() instead of `+` operator // operator is not supported between nodes
+use sub() instead of `-` operator // operator is not supported between nodes
+use mul() instead of `*` operator // operator is not supported between nodes
+use div() instead of `/` operator // operator is not supported between nodes
 
 
 # Output Format

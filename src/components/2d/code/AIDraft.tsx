@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAICode } from "../../3d/AIMaterial/useAICode";
 import { Editor } from "@monaco-editor/react";
-import { toast } from "sonner";
 
 export function AIDraft() {
   const draft = useAICode((r) => r.draft);
@@ -33,9 +32,9 @@ export function AIDraft() {
           onMount={(editor) => {
             setEditor(editor);
             editor.updateOptions({ readOnly: true });
-            editor.updateOptions({
-              wordWrap: "on",
-            });
+            // editor.updateOptions({
+            //   wordWrap: "on",
+            // });
           }}
           theme="vs-dark"
           value={draft}

@@ -19,6 +19,8 @@ export function AIPrompt() {
     }
   }, []);
 
+  //
+
   return (
     <div
       className="w-full h-full relative "
@@ -84,6 +86,7 @@ export function AIPrompt() {
               className="p-3 bg-[#71d854] mx-3"
               disabled={isAIRunning}
               onClick={async (ev: any) => {
+                toast("begin generating code");
                 //
                 function removeThinkingTag(text: string) {
                   // The regex pattern matches the <think> tag, any content (.*?),
