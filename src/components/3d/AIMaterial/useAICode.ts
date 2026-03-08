@@ -5,12 +5,11 @@ export const useAICode = create<any>((set, get) => {
     //
     prompt: `const material = new THREE.MeshPhysicalNodeMaterial({})
 
-
 material.transmissionNode = float(1.0);
 material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 
-material.roughnessNode = float(0.0);
-material.metalnessNode = float(0.0);
+material.roughnessNode = float(0.1);
+material.metalnessNode = float(0.2);
 
 const noise = vec3(
         sin(positionLocal.y.mul(10).add(sin(time).add(time))),
@@ -24,7 +23,7 @@ material.positionNode = positionLocal.add(
 
 // make it rainbow colored aligned to the swirl
 // todo: change this line:
-material.colorNode = color( new Color(  'rgba(212, 46, 46, 1)' ) )
+material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) )
 
 return material;
     `.trim(),
@@ -36,12 +35,11 @@ return material;
     code: `
 const material = new THREE.MeshPhysicalNodeMaterial({})
 
-
 material.transmissionNode = float(1.0);
 material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 
-material.roughnessNode = float(0.0);
-material.metalnessNode = float(0.0);
+material.roughnessNode = float(0.1);
+material.metalnessNode = float(0.2);
 
 const noise = vec3(
         sin(positionLocal.y.mul(10).add(sin(time).add(time))),
@@ -55,7 +53,7 @@ material.positionNode = positionLocal.add(
 
 // make it rainbow colored aligned to the swirl
 // todo: change this line:
-material.colorNode = color( new Color(  'rgba(212, 46, 46, 1)' ) )
+material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) )
 
 return material;
 `.trim(),
