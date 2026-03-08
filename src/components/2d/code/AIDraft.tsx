@@ -13,7 +13,7 @@ export function AIDraft() {
     }
     return useAICode.subscribe((now, before) => {
       if (now.draftBottom !== before.draftBottom) {
-        editor.revealLineInCenter(now.draft.split("\n").length / 2);
+        editor.revealLineInCenter(now.draft.split("\n").length);
       }
     });
   }, [editor]);
