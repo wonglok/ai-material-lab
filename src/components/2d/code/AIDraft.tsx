@@ -8,13 +8,6 @@ export function AIDraft() {
   const [editor, setEditor] = useState<any>(null);
 
   useEffect(() => {
-    let val = localStorage.getItem("draft");
-    if (val && typeof val === "string") {
-      useAICode.setState({ draft: val });
-    }
-  }, []);
-
-  useEffect(() => {
     if (!editor) {
       return;
     }
@@ -32,9 +25,6 @@ export function AIDraft() {
         if ((ev.metaKey || ev.ctrlKey) && ev.key === "s") {
           ev.preventDefault();
           ev.stopPropagation();
-
-          localStorage.setItem("draft", draft);
-          toast("Your draft is saved");
         }
       }}
     >
@@ -42,27 +32,12 @@ export function AIDraft() {
         <Editor
           onMount={(editor) => {
             setEditor(editor);
+            editor.updateOptions({ readOnly: true });
           }}
           theme="vs-dark"
           value={draft}
           language="javascript"
-          onChange={(val) => {
-            localStorage.setItem("draft", val!);
-            useAICode.setState({ draft: val });
-          }}
         ></Editor>
-      </div>
-      <div className=" absolute top-0 right-0 z-10">
-        <button
-          className="p-3 bg-white m-3"
-          onClick={() => {
-            localStorage.setItem("draft", draft);
-            toast("Your draft is saved");
-            useAICode.setState({ code: draft });
-          }}
-        >
-          Preview
-        </button>
       </div>
     </div>
   );

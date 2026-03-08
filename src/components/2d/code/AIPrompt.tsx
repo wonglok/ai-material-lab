@@ -64,18 +64,19 @@ export function AIPrompt() {
               });
 
               const resp = await client.chat.completions.create({
-                reasoning_effort: "none",
+                reasoning_effort: "xhigh",
                 messages: [
                   { role: "system", content: `${TSLSystem}` },
                   { role: "user", content: prompt },
                 ],
                 model: `qwen/qwen3.5-35b-a3b`,
                 stream: true,
+                temperature: 0.0,
               });
 
               let tx = "";
               for await (let evt of resp) {
-                tx += evt.choices[0].delta.content;
+                tx += evt.choices[0].delta.content || "";
                 useAICode.setState({
                   draft: `${removeThinkingTag(`${tx}`)}`,
                   draftBottom: Math.random(),
