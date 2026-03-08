@@ -5,7 +5,6 @@ export const useAICode = create<any>((set, get) => {
     //
     prompt: `const material = new THREE.MeshPhysicalNodeMaterial({})
 
-
 material.transmissionNode = float(1.0);
 material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 
@@ -20,7 +19,7 @@ material.positionNode = positionLocal.add(
     )
 );
 
-// make it rainbow colored
+// make it rainbow colored aligned to the swirl
 material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) );
 
 return material;
