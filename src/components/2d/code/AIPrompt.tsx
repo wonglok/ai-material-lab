@@ -69,7 +69,7 @@ export function AIPrompt() {
                   { role: "system", content: `${TSLSystem}` },
                   { role: "user", content: prompt },
                 ],
-                model: `qwen/qwen3.5-35b-a3b`,
+                model: `qwen3.5-4b`,
                 stream: true,
                 temperature: 0.0,
               });

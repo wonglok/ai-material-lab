@@ -1565,39 +1565,15 @@ you must use div() instead of /
 # Output
 remove all markdown format
 tsl functions area already imported , so that you dont need to: // import { ... } from 'three/tsl' // 
+there is already a time of the current time value imported.
 
 # Output example:
 
 const material = new THREE.MeshPhysicalNodeMaterial({})
 
-// Base color for the water
-material.colorNode = uniform( new Color(  '#ffab52' ) );
+material.colorNode = uniform( new THREE.Color( 'rgba(245, 13, 13, 1)' ) );
 
-// Make it look like a gel/water blob with transmission and thickness
-material.transmissionNode = float(1.0);
-material.thicknessNode = float(1.5); // Thickness of the water layer
+material.positionNode = vec3(positionLocal);
 
-// Surface properties
-material.roughnessNode = float(0.0);
-material.metalnessNode = float(0.0);
-
-const wobbleFreq = float( 2.0 );
-const wobbleAmp = float( 0.15 );
-
-material.positionNode = vec3(positionLocal)
-    .mul(
-        vec3(
-            1.0, 
-            2.0, 
-            1.0
-        )
-    )
-    .add(
-        vec3(
-            sin(time.add(positionLocal.y.mul(Math.PI * 1.5))),
-            0.0,
-            cos(time.add(positionLocal.y.mul(Math.PI * 1.5))),
-        )
-    )
 
 return material;
