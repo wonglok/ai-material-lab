@@ -23,7 +23,7 @@ material.positionNode = positionLocal.add(
 
 // make it rainbow colored aligned to the swirl
 // todo: change this line:
-material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) )
+material.colorNode = vec4(1.0);
 
 return material;
     `.trim(),
@@ -51,9 +51,9 @@ material.positionNode = positionLocal.add(
     noise
 );
 
-// make it rainbow colored aligned to the noise
+// make it rainbow colored aligned to the swirl
 // todo: change this line:
-material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) )
+material.colorNode = vec4(1.0);
 
 return material;
 `.trim(),
