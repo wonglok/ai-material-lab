@@ -53,21 +53,32 @@ export function AIPrompt() {
               <div className="px-3 border-b py-2">Model</div>
               <select
                 className="px-3 py-3"
-                value={modelId}
+                defaultValue={modelId}
                 onChange={(ev) => {
                   useAICode.setState({
                     modelId: ev.target.value,
                   });
                 }}
               >
-                <option value={"qwen3.5-4b"}>{`qwen3.5-4b`}</option>
-                <option value={"qwen3.5-9b"}>{`qwen3.5-9b`}</option>
-                <option value={"qwen3.5-35b-a3b"}>{`qwen3.5-35b-a3b`}</option>
+                <option key="k0" value={"qwen3.5-4b"}>{`qwen3.5-4b`}</option>
+                <option key="k1" value={"qwen3.5-9b"}>{`qwen3.5-9b`}</option>
+                <option
+                  key="k2"
+                  value={"qwen3.5-35b-a3b"}
+                >{`qwen3.5-35b-a3b`}</option>
               </select>
             </div>
             <div className="m-3 bg-[#ffffff]">
               <div className="px-3 border-b py-2">Context Window Size</div>
-              <input className="p-3 bg-[#ffffff]" value={ctxSize}></input>
+              <input
+                className="p-3 bg-[#ffffff]"
+                value={ctxSize}
+                onChange={(ev) => {
+                  useAICode.setState({
+                    ctxSize: ev.target.value,
+                  });
+                }}
+              ></input>
             </div>
             <button
               className="p-3 bg-[#71d854] mx-3"
