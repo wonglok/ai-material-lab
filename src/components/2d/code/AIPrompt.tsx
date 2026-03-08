@@ -133,7 +133,7 @@ export function AIPrompt() {
                   ],
                   model: modelId,
                   stream: true,
-                  temperature: 1,
+                  temperature: 0,
                 });
 
                 let tx = "";

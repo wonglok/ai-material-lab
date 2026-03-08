@@ -1567,6 +1567,7 @@ use sub() instead of `-` operator // operator is not supported between nodes
 use mul() instead of `*` operator // operator is not supported between nodes
 use div() instead of `/` operator // operator is not supported between nodes
 
+use hue(colorNode, floatValue) function instead of chained method .hue()
 
 # Output Format
 remove all markdown format
