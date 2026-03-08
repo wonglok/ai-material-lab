@@ -34,10 +34,16 @@ const material = new THREE.MeshPhysicalNodeMaterial({})
 material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) );
 
 material.transmissionNode = float(1.0);
-material.thicknessNode = float(1.0).add(sin(time.add(positionLocal.length()))); 
+material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 
 material.roughnessNode = float(0.0);
 material.metalnessNode = float(0.0);
+
+material.positionNode = positionLocal.add(
+    vec3(
+        sin(positionLocal.x)
+    )
+);
 
 return material;
 `.trim(),

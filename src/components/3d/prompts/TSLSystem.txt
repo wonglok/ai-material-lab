@@ -18,7 +18,7 @@ material.metalnessNode = float(0.0);
 
 return material;
 
-# Rule
+# Rule for Final Check
 
 Always use:
 const nodeUv = uv(); // uv is a function, not a node
