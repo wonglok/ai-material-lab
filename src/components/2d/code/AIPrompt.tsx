@@ -126,7 +126,7 @@ export function AIPrompt() {
                 });
 
                 const resp = await client.chat.completions.create({
-                  reasoning_effort: "none",
+                  reasoning_effort: "low",
                   messages: [
                     { role: "system", content: `${TSLSystem}` },
                     { role: "user", content: prompt },
@@ -134,6 +134,14 @@ export function AIPrompt() {
                   model: modelId,
                   stream: true,
                   temperature: 0,
+
+                  // body: {
+                  //   chat_template_kwargs: { enable_thinking: false },
+                  // },
+
+                  // extra_body: {
+                  //   chat_template_kwargs: { enable_thinking: false },
+                  // },
                 });
 
                 let tx = "";
