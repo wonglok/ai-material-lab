@@ -1569,20 +1569,8 @@ use div() instead of `/` operator // operator is not supported between nodes
 
 use hue(colorNode, floatValue) function instead of chained method .hue()
 
-# Output Format
-remove all markdown format
 tsl functions area already imported , so that you dont need to: // import { ... } from 'three/tsl' // 
 
+# Output Format
+remove all markdown format
 
-## Output example:
-const material = new THREE.MeshPhysicalNodeMaterial({})
-
-material.colorNode = color( new Color(  'rgba(255, 255, 255, 1)' ) );
-
-material.transmissionNode = float(1.0);
-material.thicknessNode = float(1.5); 
-
-material.roughnessNode = float(0.0);
-material.metalnessNode = float(0.0);
-
-return material;
