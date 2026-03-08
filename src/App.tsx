@@ -12,7 +12,7 @@ import { AICode } from "./components/2d/code/AICode";
 function App() {
   return (
     <>
-      <div className="w-full flex h-1/2  bg-[#84d1a1] p-1">
+      <div className="w-full flex h-2/3  bg-[#84d1a1] p-1">
         <div className="h-full w-1/2 pr-1">
           <CanvasGPU>
             <Sphere args={[1, 128, 128]}>
@@ -26,7 +26,7 @@ function App() {
           <AICode></AICode>
         </div>
       </div>
-      <div className="w-full h-1/2 flex  bg-[#84d1a1]">
+      <div className="w-full h-1/3 flex  bg-[#84d1a1]">
         <div className="w-1/2 h-full pr-1">
           <AIPrompt></AIPrompt>
         </div>
