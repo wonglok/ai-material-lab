@@ -1556,11 +1556,10 @@ Check below for more details about `NodeMaterial` inputs.
 | `gl_FragColor` | `material.fragmentNode` | `vec4` |
 
 
-# Gudieline
-you must always use add() instead of + operator
-you must always use sub() instead of - operator
-you must always use mul() instead of * operator
-you must always use div() instead of / operator
+MUST always use add() instead of `+` operator in js
+MUST always use sub() instead of `-` operator in js
+MUST always use mul() instead of `*` operator in js
+MUST always use div() instead of `/` operator in js
 
 # Output
 remove all markdown format

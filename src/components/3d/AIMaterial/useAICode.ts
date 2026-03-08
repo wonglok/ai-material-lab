@@ -19,6 +19,8 @@ material.metalnessNode = float(0.0);
 return material;
     `.trim(),
     isRunning: false,
+    ctxSize: 128_000,
+    modelId: `qwen3.5-9b`,
     draft: `
     `.trim(),
     code: `
