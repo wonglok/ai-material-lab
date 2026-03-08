@@ -123,7 +123,7 @@ export function AIPrompt() {
                 });
 
                 const resp = await client.chat.completions.create({
-                  reasoning_effort: "xhigh",
+                  reasoning_effort: "none",
                   messages: [
                     { role: "system", content: `${TSLSystem}` },
                     { role: "user", content: prompt },
