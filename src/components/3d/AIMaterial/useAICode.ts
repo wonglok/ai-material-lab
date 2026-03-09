@@ -1,10 +1,6 @@
 import { create } from "zustand";
 const tempplate = `const material = new THREE.MeshPhysicalNodeMaterial({})
 
-material.transmissionNode = float(1.0);
-material.roughnessNode = float(0.1);
-material.metalnessNode = float(0.2);
-
 // Create water-like noise pattern with time variation
 const waveNoise = vec3(
     sin(positionLocal.y.mul(10).add(sin(time).mul(5))),
@@ -12,8 +8,13 @@ const waveNoise = vec3(
     cos(positionLocal.y.mul(10).add(sin(time).mul(5)))
 ).normalize();
 
-material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 
+material.transmissionNode = float(1.0);
+
+material.roughnessNode = float(0.1);
+material.metalnessNode = float(0.2);
+
+material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 material.positionNode = positionLocal.add(waveNoise);
 
 // Make it blue and water-ish with wavy variation based on noise above, change with sin(time)
