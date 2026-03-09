@@ -29,7 +29,7 @@ export const useAICode = create<any>((set, get) => {
     prompt: `${tempplate}
     `.trim(),
     isRunning: false,
-    ctxSize: 256_000,
+    ctxSize: 128_000,
     modelId: `qwen3.5-4b`,
     draft: `
     `.trim(),
