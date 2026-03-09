@@ -80,77 +80,105 @@ export function AIPrompt() {
                 }}
               ></input>
             </div>
-            <button
-              className="p-3 bg-[#71d854] mx-3"
-              disabled={isAIRunning}
-              onClick={async (ev: any) => {
-                toast("begin generating code");
-                //
-                function removeThinkingTag(text: string) {
-                  // The regex pattern matches the <think> tag, any content (.*?),
-                  // and the </think> tag across multiple lines (s flag).
-                  const regex = /<think>.*?<\/think>/gs;
-                  return text.replace(regex, "").trim();
-                }
+            {isAIRunning && (
+              <button
+                className="p-3 bg-[#bd1f0e] mx-3 text-white"
+                onClick={() => {
+                  let stopper = useAICode.getState().stopper;
+                  if (stopper) {
+                    stopper.abort();
+                  }
+                  useAICode.setState({
+                    isAIRunning: false,
+                  });
+                }}
+              >
+                Stop AI
+              </button>
+            )}
+            {!isAIRunning && (
+              <button
+                className="p-3 bg-[#71d854] mx-3"
+                disabled={isAIRunning}
+                onClick={async (ev: any) => {
+                  const stopper = new AbortController();
+                  useAICode.setState({ isAIRunning: true, stopper });
 
-                const headers: HeadersInit = {
-                  "Content-Type": "application/json",
-                };
-                headers["Authorization"] = `Bearer N/A`;
+                  toast("begin generating code");
+                  //
+                  function removeThinkingTag(text: string) {
+                    // The regex pattern matches the <think> tag, any content (.*?),
+                    // and the </think> tag across multiple lines (s flag).
+                    const regex = /<think>.*?<\/think>/gs;
+                    return text.replace(regex, "").trim();
+                  }
 
-                await fetch(`http://localhost:1234/api/v1/models/unload`, {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify({
-                    instance_id: modelId,
-                  }),
-                }).catch((r) => {});
+                  const headers: HeadersInit = {
+                    "Content-Type": "application/json",
+                  };
+                  headers["Authorization"] = `Bearer N/A`;
 
-                await fetch(`http://localhost:1234/api/v1/models/load`, {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify({
+                  await fetch(`http://localhost:1234/api/v1/models/unload`, {
+                    method: "POST",
+                    headers: headers,
+                    signal: stopper.signal,
+                    body: JSON.stringify({
+                      instance_id: modelId,
+                    }),
+                  }).catch((r) => {});
+
+                  await fetch(`http://localhost:1234/api/v1/models/load`, {
+                    method: "POST",
+                    headers: headers,
+                    signal: stopper.signal,
+                    body: JSON.stringify({
+                      model: modelId,
+                      context_length: ctxSize,
+                    }),
+                  });
+
+                  const client = new OpenAI({
+                    apiKey: "n/a", // This is the default and can be omitted
+                    baseURL: `http://localhost:1234/v1`,
+                    dangerouslyAllowBrowser: true,
+                  });
+
+                  const resp = await client.chat.completions.create({
+                    reasoning_effort: "high",
+                    messages: [
+                      { role: "system", content: `${TSLSystem}` },
+                      { role: "user", content: prompt },
+                    ],
                     model: modelId,
-                    context_length: ctxSize,
-                  }),
-                });
+                    stream: true,
+                    temperature: 0,
+                  });
 
-                useAICode.setState({ isAIRunning: true });
+                  let tx = "";
+                  for await (let evt of resp) {
+                    if (
+                      stopper.signal.aborted &&
+                      !resp.controller.signal.aborted
+                    ) {
+                      resp.controller.abort();
+                    }
 
-                const client = new OpenAI({
-                  apiKey: "n/a", // This is the default and can be omitted
-                  baseURL: `http://localhost:1234/v1`,
-                  dangerouslyAllowBrowser: true,
-                });
-
-                const resp = await client.chat.completions.create({
-                  reasoning_effort: "high",
-                  messages: [
-                    { role: "system", content: `${TSLSystem}` },
-                    { role: "user", content: prompt },
-                  ],
-                  model: modelId,
-                  stream: true,
-                  temperature: 0,
-                });
-
-                let tx = "";
-                for await (let evt of resp) {
-                  tx += evt.choices[0].delta.content || "";
+                    tx += evt.choices[0].delta.content || "";
+                    useAICode.setState({
+                      draft: `${removeThinkingTag(`${tx}`)}`,
+                      draftBottom: Math.random(),
+                    });
+                  }
                   useAICode.setState({
                     draft: `${removeThinkingTag(`${tx}`)}`,
-                    draftBottom: Math.random(),
+                    code: `${removeThinkingTag(`${tx}`)}`,
+                    isAIRunning: false,
                   });
-                }
-                useAICode.setState({
-                  draft: `${removeThinkingTag(`${tx}`)}`,
-                  code: `${removeThinkingTag(`${tx}`)}`,
-                  isAIRunning: false,
-                });
-              }}
-            >
-              {isAIRunning ? `Generating...` : `Submit Prompt`}
-            </button>
+                }}
+              >
+                {isAIRunning ? `Generating...` : `Submit Prompt`}
+              </button>
+            )}
           </>
         )}
       </div>
