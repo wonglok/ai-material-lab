@@ -38,7 +38,7 @@ export function AIDraft() {
           }}
           theme="vs-dark"
           value={draft}
-          language="javascript"
+          language="markdown"
         ></Editor>
       </div>
     </div>
