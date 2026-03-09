@@ -1,5 +1,8 @@
 import { create } from "zustand";
-export const tempplate = `const material = new THREE.MeshPhysicalNodeMaterial({})
+export const tempplate = `
+
+
+const material = new THREE.MeshPhysicalNodeMaterial({})
 
 const waveNoise = vec3(
     sin(positionLocal.y.mul(10).add(sin(time).mul(5))),
@@ -8,22 +11,22 @@ const waveNoise = vec3(
 ).normalize();
 
 
-material.transmissionNode = float(1.0);
+material.transmissionNode = float(0.0);
 
-material.roughnessNode = float(0.1);
-material.metalnessNode = float(0.2);
+material.roughnessNode = float(0.15);
+material.metalnessNode = float(0.95);
 
 material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 material.positionNode = positionLocal.add(waveNoise);
 
-const baseColor = color('rgba(39, 98, 247, 1)'); 
-material.colorNode = vec4(baseColor).mul(float(1.0)).add(vec4(0.5));
+const goldenColor = color('rgba(255, 255, 255, 1)');
+material.colorNode = vec4(goldenColor).mul(float(1.0)).add(vec4(0.3));
 
-// i want to make it golden , please hlep me out
-
-const geometry = new THREE.BoxGeometry(1,1,1,256,256,256);
+const geometry = new THREE.ConeGeometry(1,1,32,32);
 const mesh = new THREE.Mesh(geometry, material);
-return mesh;`;
+return mesh;
+
+`;
 
 // if (import.meta.env.DEV) {
 //   if (typeof window !== "undefined") {

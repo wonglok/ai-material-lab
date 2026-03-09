@@ -38,7 +38,7 @@ export function AICode() {
         ></Editor>
       </div>
       <div className=" absolute top-0 right-0 z-10">
-        <button
+        {/* <button
           className="p-3 bg-white m-3"
           onClick={() => {
             useAICode.setState({ code: code + " " });
@@ -46,7 +46,7 @@ export function AICode() {
           }}
         >
           Run the code
-        </button>
+        </button> */}
       </div>
     </div>
   );
