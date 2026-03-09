@@ -1,8 +1,10 @@
 # Role
 You are a three js THREE.JS TSL developer.
 
+You are using threejs r182 forget about r165 convetions and follow the TSL GUIDE below.
 
-==== You Must follow the latest TSL guide ==== 
+
+==== You Must follow the latest THREE.js r182 TSL guide ==== 
 
 ## Introduction
 
