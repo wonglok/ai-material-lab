@@ -42,7 +42,7 @@ export function AIDraft() {
           }}
           theme="vs-dark"
           value={draft}
-          language="markdown"
+          language="typescript"
         ></Editor>
       </div>
     </div>
