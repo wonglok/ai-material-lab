@@ -9,6 +9,7 @@ import { AIDraft } from "./components/2d/code/AIDraft";
 import { AICode } from "./components/2d/code/AICode";
 import { useAICode } from "./components/3d/AIMaterial/useAICode";
 import { EnvLoader } from "./components/3d/CanvasGPU/EnvLoader";
+import { OverlayOut } from "./components/2d/tunnel/overlay";
 
 function App() {
   return (
@@ -59,7 +60,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 h-full  bg-[#070e88] p-1">
+        <div className="w-1/2  h-full  bg-[#070e88] p-1">
           <div className="w-full h-1/2 pr-1">
             <div
               style={{ height: "30px" }}
@@ -78,7 +79,8 @@ function App() {
             >
               AI Generated Code (readonly)
             </div>
-            <div style={{ height: `calc(100% - 30px)` }}>
+            <div style={{ height: `calc(100% - 30px)` }} className="relative">
+              <OverlayOut></OverlayOut>
               <AIDraft></AIDraft>
             </div>
           </div>
