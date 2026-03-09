@@ -29,12 +29,16 @@ export function AIDraft() {
     >
       <div className=" absolute top-0 left-0 w-full h-full">
         <Editor
-          onMount={(editor) => {
+          onMount={(editor, monaco) => {
             setEditor(editor);
             editor.updateOptions({ readOnly: true });
-            // editor.updateOptions({
-            //   wordWrap: "on",
-            // });
+
+            monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions(
+              {
+                noSemanticValidation: true,
+                noSyntaxValidation: true,
+              },
+            );
           }}
           theme="vs-dark"
           value={draft}
