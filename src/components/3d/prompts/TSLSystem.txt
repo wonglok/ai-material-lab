@@ -1567,7 +1567,8 @@ use sub() instead of `-` operator // operator is not supported between nodes
 use mul() instead of `*` operator // operator is not supported between nodes
 use div() instead of `/` operator // operator is not supported between nodes
 
-use hue(colorNode, floatValue) function instead of chained method .hue()
+use hue(hueNode, rotationValue) function
+aviod .hue(value) // bad, the system dont have .hue and chained method.
 
 tsl functions area already imported , so that you dont need to: // import { ... } from 'three/tsl' // 
 
