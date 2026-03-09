@@ -1,7 +1,5 @@
 import { create } from "zustand";
 export const tempplate = `
-
-
 const material = new THREE.MeshPhysicalNodeMaterial({})
 
 const waveNoise = vec3(
@@ -9,7 +7,6 @@ const waveNoise = vec3(
     positionLocal.y.mul(2),
     cos(positionLocal.y.mul(10).add(sin(time).mul(5)))
 ).normalize();
-
 
 material.transmissionNode = float(0.0);
 
@@ -22,10 +19,10 @@ material.positionNode = positionLocal.add(waveNoise);
 const goldenColor = color('rgba(255, 255, 255, 1)');
 material.colorNode = vec4(goldenColor).mul(float(1.0)).add(vec4(0.3));
 
-const geometry = new THREE.ConeGeometry(1,1,32,32);
+const geometry = new THREE.SphereGeometry(1,256,256);
 const mesh = new THREE.Mesh(geometry, material);
-return mesh;
 
+return mesh;
 `;
 
 // if (import.meta.env.DEV) {

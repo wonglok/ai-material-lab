@@ -79,8 +79,8 @@ function App() {
               AI Generated Code (readonly)
             </div>
             <div style={{ height: `calc(100% - 30px)` }} className="relative">
-              <OverlayOut></OverlayOut>
               <AIDraft></AIDraft>
+              <OverlayOut></OverlayOut>
             </div>
           </div>
         </div>
