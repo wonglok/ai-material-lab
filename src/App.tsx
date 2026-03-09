@@ -31,7 +31,7 @@ function App() {
                       useAICode.setState({
                         error: "",
                       });
-                      toast.info("successfully applied material", {
+                      toast.info("Successful: Compile Code", {
                         position: "top-center",
                       });
                     }}
