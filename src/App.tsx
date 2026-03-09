@@ -4,10 +4,11 @@ import { OrbitControls, Sphere } from "@react-three/drei";
 import { CanvasGPU } from "./components/3d/CanvasGPU/CanvasGPU";
 import { BloomPipeline } from "./components/3d/CanvasGPU/BloomPipeline";
 import { AIGlassMaterial } from "./components/3d/AIMaterial/Glass/AIGlassMaterial";
-import { Toaster } from "sonner";
+import { toast, Toaster } from "sonner";
 import { AIPrompt } from "./components/2d/code/AIPrompt";
 import { AIDraft } from "./components/2d/code/AIDraft";
 import { AICode } from "./components/2d/code/AICode";
+import { useAICode } from "./components/3d/AIMaterial/useAICode";
 
 function App() {
   return (
@@ -23,7 +24,22 @@ function App() {
           <div className="" style={{ height: `calc(100% - 30px)` }}>
             <CanvasGPU>
               <Sphere args={[1, 128, 128]}>
-                <AIGlassMaterial></AIGlassMaterial>
+                <AIGlassMaterial
+                  onOK={() => {
+                    useAICode.setState({
+                      error: "",
+                    });
+                    toast.info("successfully applied material", {
+                      position: "top-center",
+                    });
+                  }}
+                  onError={(error) => {
+                    toast.error(error);
+                    useAICode.setState({
+                      error: error,
+                    });
+                  }}
+                ></AIGlassMaterial>
               </Sphere>
               <OrbitControls></OrbitControls>
               <BloomPipeline url={`/hdr/default.hdr`}></BloomPipeline>
@@ -42,8 +58,8 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="w-full h-1/2 flex  bg-[#070e88] p-1">
-        <div className="w-1/2 h-full pr-1">
+      <div className="w-full h-1/2  bg-[#070e88] p-1">
+        <div className="w-full h-1/2 pr-1">
           <div
             style={{ height: "30px" }}
             className="flex items-center justify-center text-[#ebc275] "
@@ -54,7 +70,7 @@ function App() {
             <AIPrompt></AIPrompt>
           </div>
         </div>
-        <div className="w-1/2 h-full ">
+        <div className="w-full h-1/2 ">
           <div
             style={{ height: "30px" }}
             className="flex items-center justify-center text-[#ebc275] "

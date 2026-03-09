@@ -12,17 +12,16 @@ material.roughnessNode = float(0.1);
 material.metalnessNode = float(0.2);
 
 const noise = vec3(
-        sin(positionLocal.y.mul(10).add(sin(time).add(time))),
-        positionLocal.y.mul(2),
-        cos(positionLocal.y.mul(10).add(sin(time).add(time))),
-    );
+    sin(positionLocal.y.mul(10).add(sin(time).add(time))),
+    positionLocal.y.mul(2),
+    cos(positionLocal.y.mul(10).add(sin(time).add(time))),
+).normalize();
 
 material.positionNode = positionLocal.add(
     noise
 );
 
-// make it rainbow colored aligned to the swirl
-// todo: change this line:
+// make it blue and water-ish
 material.colorNode = vec4(1.0);
 
 return material;
@@ -42,17 +41,16 @@ material.roughnessNode = float(0.1);
 material.metalnessNode = float(0.2);
 
 const noise = vec3(
-        sin(positionLocal.y.mul(10).add(sin(time).add(time))),
-        positionLocal.y.mul(2),
-        cos(positionLocal.y.mul(10).add(sin(time).add(time))),
-    );
+    sin(positionLocal.y.mul(10).add(sin(time).add(time))),
+    positionLocal.y.mul(2),
+    cos(positionLocal.y.mul(10).add(sin(time).add(time))),
+).normalize();
 
 material.positionNode = positionLocal.add(
     noise
 );
 
-// make it rainbow colored aligned to the swirl
-// todo: change this line:
+// make it blue and water-ish
 material.colorNode = vec4(1.0);
 
 return material;

@@ -46,7 +46,6 @@ export function AICode() {
             });
 
             localStorage.setItem("code", code);
-            toast("Your code is saved");
           }}
         >
           Run the code

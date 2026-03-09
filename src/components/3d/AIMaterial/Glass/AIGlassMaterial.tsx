@@ -3,7 +3,10 @@ import * as TSL from "three/tsl";
 import { useAICode } from "../useAICode";
 import * as THREE from "three/webgpu";
 
-export function AIGlassMaterial() {
+export function AIGlassMaterial({
+  onOK = (_: any) => {},
+  onError = (_: any) => {},
+}) {
   const code = useAICode((r) => r.code);
 
   const key = useMemo(() => {
@@ -28,9 +31,11 @@ export function AIGlassMaterial() {
       let value = fnc(...vals, ...Object.values(THREE), THREE);
       if (value instanceof THREE.NodeMaterial) {
         currentNode = value;
+        onOK(value);
       }
     } catch (e) {
       console.error(e);
+      onError(JSON.stringify(e));
     }
 
     return <primitive object={currentNode}></primitive>;
