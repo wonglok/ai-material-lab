@@ -25,24 +25,23 @@ function App() {
             </div>
             <div className="" style={{ height: `calc(100% - 30px)` }}>
               <CanvasGPU>
-                <Sphere args={[1, 128, 128]}>
-                  <AIGlassMaterial
-                    onOK={() => {
-                      useAICode.setState({
-                        error: "",
-                      });
-                      toast.info("Successful: Compile Code", {
-                        position: "top-center",
-                      });
-                    }}
-                    onError={(error) => {
-                      toast.error(error);
-                      useAICode.setState({
-                        error: error,
-                      });
-                    }}
-                  ></AIGlassMaterial>
-                </Sphere>
+                <AIGlassMaterial
+                  onOK={() => {
+                    useAICode.setState({
+                      error: "",
+                    });
+                    toast.info("Successful: Compile Code", {
+                      position: "top-center",
+                    });
+                  }}
+                  onError={(error) => {
+                    toast.error(error);
+                    useAICode.setState({
+                      error: error,
+                    });
+                  }}
+                ></AIGlassMaterial>
+
                 <OrbitControls></OrbitControls>
                 <EnvLoader url={`/hdr/default.hdr`}></EnvLoader>
               </CanvasGPU>

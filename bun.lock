@@ -17,6 +17,7 @@
         "sonner": "^2.0.7",
         "tailwindcss": "^4.2.1",
         "three": "^0.183.2",
+        "tsl-textures": "^3.0.1",
         "tunnel-rat": "^0.1.2",
         "zustand": "^5.0.11",
       },
@@ -634,6 +635,8 @@
     "troika-worker-utils": ["troika-worker-utils@0.52.0", "https://registry.npmmirror.com/troika-worker-utils/-/troika-worker-utils-0.52.0.tgz", {}, "sha512-W1CpvTHykaPH5brv5VHLfQo9D1OYuo0cSBEUQFFT/nBUzM8iD6Lq2/tgG/f1OelbAS1WtaTPQzE5uM49egnngw=="],
 
     "ts-api-utils": ["ts-api-utils@2.4.0", "https://registry.npmmirror.com/ts-api-utils/-/ts-api-utils-2.4.0.tgz", { "peerDependencies": { "typescript": ">=4.8.4" } }, "sha512-3TaVTaAv2gTiMB35i3FiGJaRfwb3Pyn/j3m/bfAvGe8FB7CF6u+LMYqYlDh7reQf7UNvoTvdfAqHGmPGOSsPmA=="],
+
+    "tsl-textures": ["tsl-textures@3.0.1", "https://registry.npmmirror.com/tsl-textures/-/tsl-textures-3.0.1.tgz", {}, "sha512-m+icznk3mpJdf7QL5N0Iy9IFshtJbCLJx2A0kW9E9g4yuiwXlozb3q9GaBaJdH/6UbM2B5AaIBbpWxsfiFTa9Q=="],
 
     "tunnel-rat": ["tunnel-rat@0.1.2", "https://registry.npmmirror.com/tunnel-rat/-/tunnel-rat-0.1.2.tgz", { "dependencies": { "zustand": "^4.3.2" } }, "sha512-lR5VHmkPhzdhrM092lI2nACsLO4QubF0/yoOhzX7c+wIpbN1GjHNzCc91QlpxBi+cnx8vVJ+Ur6vL5cEoQPFpQ=="],
 

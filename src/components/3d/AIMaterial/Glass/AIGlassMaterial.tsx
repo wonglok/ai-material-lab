@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import * as TSL from "three/tsl";
 import { useAICode } from "../useAICode";
 import * as THREE from "three/webgpu";
+import * as Textrues from "tsl-textures";
 
 export function AIGlassMaterial({
   onOK = (_?: any) => {},
@@ -14,7 +15,7 @@ export function AIGlassMaterial({
   }, []);
 
   const materialNode = useMemo(() => {
-    let defaultNode = new THREE.MeshBasicNodeMaterial({});
+    let defaultNode = new THREE.Group();
     let currentNode: any = defaultNode;
 
     try {
@@ -23,13 +24,19 @@ export function AIGlassMaterial({
         ...Object.keys(TSL),
         ...Object.keys(THREE),
         "THREE",
+        ...Object.keys(Textrues),
         `
       ${code}
       `,
       );
 
-      let value = fnc(...vals, ...Object.values(THREE), THREE);
-      if (value instanceof THREE.NodeMaterial) {
+      let value = fnc(
+        ...vals,
+        ...Object.values(THREE),
+        THREE,
+        ...Object.values(Textrues),
+      );
+      if (value instanceof THREE.Object3D) {
         currentNode = value;
         onOK();
       } else {

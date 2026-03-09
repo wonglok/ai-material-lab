@@ -1,7 +1,6 @@
 import { create } from "zustand";
-const tempplate = `const material = new THREE.MeshPhysicalNodeMaterial({})
+export const tempplate = `const material = new THREE.MeshPhysicalNodeMaterial({})
 
-// Create water-like noise pattern with time variation
 const waveNoise = vec3(
     sin(positionLocal.y.mul(10).add(sin(time).mul(5))),
     positionLocal.y.mul(2),
@@ -17,11 +16,20 @@ material.metalnessNode = float(0.2);
 material.thicknessNode = float(1.5).add(sin(time.add(positionLocal.length()))); 
 material.positionNode = positionLocal.add(waveNoise);
 
-// Make it blue and water-ish with wavy variation based on noise above, change with sin(time)
-const baseColor = color('rgba(39, 98, 247, 1)'); // Blue water color
+const baseColor = color('rgba(39, 98, 247, 1)'); 
 material.colorNode = vec4(baseColor).mul(float(1.0)).add(vec4(0.5));
 
-return material;`;
+// i want to make it golden , please hlep me out
+
+const geometry = new THREE.BoxGeometry(1,1,1,256,256,256);
+const mesh = new THREE.Mesh(geometry, material);
+return mesh;`;
+
+// if (import.meta.env.DEV) {
+//   if (typeof window !== "undefined") {
+//     localStorage.clear();
+//   }
+// }
 
 export const useAICode = create<any>((set, get) => {
   return {
