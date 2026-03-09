@@ -16,7 +16,7 @@ function App() {
     <>
       <div className="w-full h-full flex">
         <div className="w-1/2 flex flex-col h-full  bg-[#b6edff] p-1">
-          <div className="h-1/2 w-full pr-1">
+          <div className="h-1/3 w-full pr-1">
             <div
               className="flex items-center justify-center text-[#040a7a]"
               style={{ height: "30px" }}
@@ -47,7 +47,7 @@ function App() {
               </CanvasGPU>
             </div>
           </div>
-          <div className="h-1/2 w-full">
+          <div className="h-2/3 w-full">
             <div
               style={{ height: "30px" }}
               className="flex items-center justify-center text-[#040a7a]"
@@ -60,7 +60,7 @@ function App() {
           </div>
         </div>
         <div className="w-1/2  h-full  bg-[#070e88] p-1">
-          <div className="w-full h-1/2 pr-1">
+          <div className="w-full h-2/3 pr-1">
             <div
               style={{ height: "30px" }}
               className="flex items-center justify-center text-[#ebc275] "
@@ -71,7 +71,7 @@ function App() {
               <AIPrompt></AIPrompt>
             </div>
           </div>
-          <div className="w-full h-1/2 ">
+          <div className="w-full h-1/3 ">
             <div
               style={{ height: "30px" }}
               className="flex items-center justify-center text-[#ebc275] "
