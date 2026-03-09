@@ -8,7 +8,7 @@ import {
   Object3D,
   UnsignedByteType,
 } from "three";
-import { PostProcessing } from "three/webgpu";
+import { RenderPipeline } from "three/webgpu";
 import {
   pass,
   mrt,
@@ -17,14 +17,10 @@ import {
   diffuseColor,
   velocity,
   add,
-  vec3,
   vec4,
   directionToColor,
   colorToDirection,
   sample,
-  float,
-  mix,
-  blendColor,
 } from "three/tsl";
 import { ssgi } from "three/addons/tsl/display/SSGINode.js";
 import { bloom } from "three/addons/tsl/display/BloomNode.js";
@@ -134,8 +130,6 @@ export function EnvLoader({
       return colorToDirection(scenePassNormal.sample(uv));
     });
 
-    //
-
     // gi
     const giPass = ssgi(
       scenePassColor,
@@ -169,9 +163,9 @@ export function EnvLoader({
 
     const bloomPass = bloom(compositePass, 0.1, 0.2, 1.0);
 
-    const postProcessing = new PostProcessing(renderer as any);
+    const postProcessing = new RenderPipeline(renderer as any);
 
-    postProcessing.outputNode = add(traaPass, bloomPass.mul(0.25));
+    postProcessing.outputNode = add(traaPass.toVec4(), bloomPass.mul(0.25));
 
     postProcessing.needsUpdate = true;
 
@@ -179,6 +173,8 @@ export function EnvLoader({
       texture.mapping = EquirectangularReflectionMapping;
       scene.background = texture;
       scene.environment = texture;
+
+      //
 
       setSun(
         <group name="light-player-target">

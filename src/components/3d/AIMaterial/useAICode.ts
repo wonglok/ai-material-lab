@@ -18,7 +18,7 @@ material.positionNode = positionLocal.add(
     noise
 );
 
-// make it blue and water-ish and wavy based on world space and make use of the noise above
+// make it blue and water-ish and wavy based on noise above
 material.colorNode = vec4(1.0);
 
 return material;`;

@@ -4,7 +4,7 @@ import { useAICode } from "../useAICode";
 import * as THREE from "three/webgpu";
 
 export function AIGlassMaterial({
-  onOK = (_: any) => {},
+  onOK = (_?: any) => {},
   onError = (_: any) => {},
 }) {
   const code = useAICode((r) => r.code);
@@ -31,11 +31,13 @@ export function AIGlassMaterial({
       let value = fnc(...vals, ...Object.values(THREE), THREE);
       if (value instanceof THREE.NodeMaterial) {
         currentNode = value;
-        onOK(value);
+        onOK();
+      } else {
+        throw new Error("failed");
       }
     } catch (e) {
       console.error(e);
-      onError(JSON.stringify(e));
+      onError("Failed to compile code");
     }
 
     return <primitive object={currentNode}></primitive>;

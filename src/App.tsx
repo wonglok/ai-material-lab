@@ -2,13 +2,13 @@ import "./App.css";
 
 import { OrbitControls, Sphere } from "@react-three/drei";
 import { CanvasGPU } from "./components/3d/CanvasGPU/CanvasGPU";
-import { BloomPipeline } from "./components/3d/CanvasGPU/BloomPipeline";
 import { AIGlassMaterial } from "./components/3d/AIMaterial/Glass/AIGlassMaterial";
 import { toast, Toaster } from "sonner";
 import { AIPrompt } from "./components/2d/code/AIPrompt";
 import { AIDraft } from "./components/2d/code/AIDraft";
 import { AICode } from "./components/2d/code/AICode";
 import { useAICode } from "./components/3d/AIMaterial/useAICode";
+import { EnvLoader } from "./components/3d/CanvasGPU/EnvLoader";
 
 function App() {
   return (
@@ -42,7 +42,7 @@ function App() {
                 ></AIGlassMaterial>
               </Sphere>
               <OrbitControls></OrbitControls>
-              <BloomPipeline url={`/hdr/default.hdr`}></BloomPipeline>
+              <EnvLoader url={`/hdr/default.hdr`}></EnvLoader>
             </CanvasGPU>
           </div>
         </div>

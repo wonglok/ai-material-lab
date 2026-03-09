@@ -199,7 +199,7 @@ export function BloomPipeline({
     // .add(ssrPass)
     const aaColor = fxaa(scenePassColor);
 
-    postProcessing.outputNode = add(aaColor, bloomPass.mul(1.0));
+    postProcessing.outputNode = add(aaColor.toVec4(), bloomPass.mul(1.0));
 
     postProcessing.needsUpdate = true;
 
