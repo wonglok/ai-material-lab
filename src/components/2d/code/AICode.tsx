@@ -29,7 +29,7 @@ export function AICode() {
       <div className=" absolute top-0 left-0 w-full h-full">
         <Editor
           theme="vs-dark"
-          value={code}
+          value={code.trim()}
           language="javascript"
           onChange={(val) => {
             localStorage.setItem("code", val!);
@@ -41,11 +41,8 @@ export function AICode() {
         <button
           className="p-3 bg-white m-3"
           onClick={() => {
-            useAICode.setState({
-              code: code,
-            });
-
-            localStorage.setItem("code", code);
+            useAICode.setState({ code: code + " " });
+            toast("Your code is saved");
           }}
         >
           Run the code
