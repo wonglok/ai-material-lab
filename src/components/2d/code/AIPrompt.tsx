@@ -96,6 +96,7 @@ export function AIPrompt() {
                 Stop AI
               </button>
             )}
+
             {!isAIRunning && (
               <button
                 className="p-3 bg-[#71d854] mx-3"
